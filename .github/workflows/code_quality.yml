@@ -27,20 +27,21 @@ jobs:
 #Job 2: Test and Print Variables 
  test-print-variables:
    runs-on: ubuntu-latest
+   needs: check
    name: Print Variables
-   steps: 
-    - name: Print GitHub Username
-      run: | 
-        echo "GitHub Username: $USERNAME"
-      env: 
-      USERNAME: ${{ secrets.USERNAME }}
+   steps:
+    - name: Print GitHub Username 
+      env:
+       USERNAME: ${{ secrets.USERNAME }}
+      run: |
+        echo "Username: $USERNAME"
 
 
     - name: Print GitHub Token
+      env: 
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         echo "Github Token: $GITHUB_TOKEN"
-      env: 
-      TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 #Job 3: Build and List files 
