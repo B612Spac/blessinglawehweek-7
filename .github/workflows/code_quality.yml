@@ -1,0 +1,55 @@
+name: Check Code Quality
+
+#Trigger workflow on push to the main branch 
+on:
+  push: 
+    branches:
+      - main
+
+jobs:
+#Job 1: code quality check 
+ code-quality-check:
+   runs-on: ubuntu-latest
+   name: Run Super Linter
+   steps: 
+    - name: Checkout Repository
+      uses: action/checkout@v3
+
+
+    - name: Run Super Linter
+      uses: github/super-linter@v5
+      env:
+        DEFAULT_BRANCH: main
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VALIDATE_BASH: true
+
+
+#Job 2: Test and Print Variables 
+ test-print-variables:
+   runs-on: ubuntu-latest
+   name: Print Variables
+   steps: 
+    - name: Print GitHub Username
+      run: echo "GitHub Username: ${{ secrets.USERNAME }}"
+
+
+    - name: Print GitHub Token
+      run: echo "Github Token: ${{ secrets.GITHUB_TOKEN }}"
+
+
+#Job 3: Build and List files 
+ Build: 
+  runs-on: ubuntu-latest
+  name: Build Process
+  steps:
+   - name: Checkout Repository
+     uses: actions/checkout@v3
+
+
+   - name: List All Files and Folders
+     run: ls -la
+   - name: Make the script executeable
+     run: chmod +x num_count.sh
+   - name: Run a bash script
+     run: ./num_count.sh
+
