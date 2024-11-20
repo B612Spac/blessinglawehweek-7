@@ -31,14 +31,14 @@ jobs:
    steps: 
     - name: Print GitHub Username
       run: | 
-        echo "GitHub Username: ${USERNAME}"
+        echo "GitHub Username: $USERNAME"
       env: 
       USERNAME: ${{ secrets.USERNAME }}
 
 
     - name: Print GitHub Token
       run: |
-        echo "Github Token: ${GITHUB_TOKEN}"
+        echo "Github Token: $GITHUB_TOKEN"
       env: 
       TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
