@@ -30,11 +30,17 @@ jobs:
    name: Print Variables
    steps: 
     - name: Print GitHub Username
-      run: echo "GitHub Username: ${{ secrets.USERNAME }}"
+      run: | 
+        echo "GitHub Username: ${USERNAME}"
+      env: 
+      USERNAME: ${{ secrets.USERNAME }}
 
 
     - name: Print GitHub Token
-      run: echo "Github Token: ${{ secrets.GITHUB_TOKEN }}"
+      run: |
+        echo "Github Token: ${GITHUB_TOKEN}"
+      env: 
+      TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 #Job 3: Build and List files 
