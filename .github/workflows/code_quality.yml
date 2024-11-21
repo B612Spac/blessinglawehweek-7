@@ -12,7 +12,7 @@ jobs:
    runs-on: ubuntu-latest
 
    steps: 
-    - name: Checkout Repository
+    - name: Checkout code
       uses: actions/checkout@v3
     - name: Run Super Linter
       uses: github/super-linter@v5
@@ -41,7 +41,7 @@ jobs:
   runs-on: ubuntu-latest
   needs: test-print-variables
   steps:
-   - name: Checkout Repository
+   - name: Checkout code
      uses: actions/checkout@v3
    - name: List All Files and Folders
      run: ls -la
