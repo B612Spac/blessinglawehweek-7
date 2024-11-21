@@ -2,8 +2,8 @@
 
 #prompt user for number
 
-read -p "Enter number 1: " num1
-read -p "Enter number 2: " num2
+read -r -p "Enter number 1: " num1
+read -r -p "Enter number 2: " num2
 
 #request operation from user
 
@@ -15,7 +15,7 @@ echo "4. Division (/)"
 
 #prompt user for operation
 
-read -p "Enter operation 1-4: " operation
+read -r -p "Enter operation 1-4: " operation
 
 #using case statement
 
