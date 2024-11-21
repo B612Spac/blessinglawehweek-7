@@ -10,12 +10,10 @@ jobs:
 #Job 1: code quality check 
  code-quality-check:
    runs-on: ubuntu-latest
-   name: Run Super Linter
+
    steps: 
     - name: Checkout Repository
       uses: action/checkout@v3
-
-
     - name: Run Super Linter
       uses: github/super-linter@v5
       env:
@@ -27,36 +25,28 @@ jobs:
 #Job 2: Test and Print Variables 
  test-print-variables:
    runs-on: ubuntu-latest
-   needs: check
-   name: Print Variables
+   needs: code-quality-check
    steps:
-    - name: Print GitHub Username 
+    - name: Print GitHub Username and token
       env:
        USERNAME: ${{ secrets.USERNAME }}
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         echo "Username: $USERNAME"
-
-
-    - name: Print GitHub Token
-      env: 
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        echo "Github Token: $GITHUB_TOKEN"
+        echo "GitHub Token: $GITHUB_TOKEN"
 
 
 #Job 3: Build and List files 
  Build: 
   runs-on: ubuntu-latest
-  name: Build Process
+  needs: test-print-variables
   steps:
    - name: Checkout Repository
      uses: actions/checkout@v3
-
-
    - name: List All Files and Folders
      run: ls -la
    - name: Make the script executeable
-     run: chmod +x num_count.sh
+     run: chmod +x math_operations.sh
    - name: Run a bash script
-     run: ./num_count.sh
+     run: ./math_operations.sh
 
