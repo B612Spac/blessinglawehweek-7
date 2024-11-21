@@ -7,7 +7,7 @@ if [[ ! -f ".env" ]]; then
 fi
 
 #Source variables from the .env file
-  source .env
+ # source .env
 
 #Git config: Check if your system has git configured globally
 if git config --global --list >/dev/null 2>&1; then
@@ -40,6 +40,6 @@ done
 git status
 
 #Input initial commit message
-read -p "Enter commit message: " Message
+read -r -p "Enter commit message: " Message
 git commit -m "${Message}"
 git push -u origin main
