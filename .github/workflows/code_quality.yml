@@ -13,9 +13,9 @@ jobs:
 
    steps: 
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Run Super Linter
-      uses: github/super-linter@v5
+      uses: github/super-linter@v4
       env:
         DEFAULT_BRANCH: main
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,7 +42,7 @@ jobs:
   needs: test-print-variables
   steps:
    - name: Checkout code
-     uses: actions/checkout@v3
+     uses: actions/checkout@v4
    - name: List All Files and Folders
      run: ls -la
    - name: Make the script executeable
